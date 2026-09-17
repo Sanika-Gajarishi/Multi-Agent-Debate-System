@@ -12,6 +12,7 @@ class LLMService:
     Central service responsible for communicating with Claude.
     """
 
+
     def __init__(self):
 
         api_key = os.getenv(
@@ -47,3 +48,5 @@ class LLMService:
         )
 
         return response.content[0].text
+
+        
