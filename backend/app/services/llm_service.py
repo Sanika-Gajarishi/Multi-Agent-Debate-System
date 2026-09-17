@@ -1,8 +1,7 @@
 import os
 
 from dotenv import load_dotenv
-from google import genai
-from google.genai import errors
+from anthropic import Anthropic
 
 
 load_dotenv()
@@ -10,56 +9,41 @@ load_dotenv()
 
 class LLMService:
     """
-    Central service responsible for communicating with Gemini.
+    Central service responsible for communicating with Claude.
     """
 
     def __init__(self):
-        api_key = os.getenv("GEMINI_API_KEY")
+
+        api_key = os.getenv(
+            "ANTHROPIC_API_KEY"
+        )
 
         if not api_key:
             raise ValueError(
-                "GEMINI_API_KEY is not set in the environment."
+                "ANTHROPIC_API_KEY is not set "
+                "in the environment."
             )
 
-        self.client = genai.Client(
+        self.client = Anthropic(
             api_key=api_key
         )
-
-        self.model = "gemini-2.5-flash"
 
     def generate(
         self,
         system_prompt: str,
         user_prompt: str,
     ) -> str:
-        """
-        Generate a response from Gemini.
-        """
 
-        try:
-            response = self.client.models.generate_content(
-                model=self.model,
-                contents=user_prompt,
-                config={
-                    "system_instruction": system_prompt,
-                },
-            )
+        response = self.client.messages.create(
+            model="claude-opus-4-7",
+            max_tokens=4096,
+            system=system_prompt,
+            messages=[
+                {
+                    "role": "user",
+                    "content": user_prompt,
+                }
+            ],
+        )
 
-        except errors.ClientError as exc:
-
-            if exc.code == 429:
-                raise RuntimeError(
-                    "Gemini API quota exceeded. "
-                    "The current Gemini project has reached "
-                    "its request limit. Check your Gemini API "
-                    "usage/quota before running the debate again."
-                ) from exc
-
-            raise
-
-        if not response.text:
-            raise RuntimeError(
-                "Gemini returned an empty response."
-            )
-
-        return response.text
+        return response.content[0].text
