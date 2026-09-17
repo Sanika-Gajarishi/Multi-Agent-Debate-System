@@ -118,7 +118,7 @@ Remember:
 
         response = response.strip()
 
-        # Remove markdown code fences if Gemini adds them.
+        
         if response.startswith("```json"):
             response = response[7:]
 
