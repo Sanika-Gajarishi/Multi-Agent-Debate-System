@@ -47,3 +47,5 @@ def get_debate(
     response.raise_for_status()
 
     return response.json()
+
+    
