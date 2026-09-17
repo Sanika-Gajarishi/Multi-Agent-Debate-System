@@ -28,3 +28,20 @@ class DebateResponse(BaseModel):
     critique: str
 
     judge_result: dict
+
+class DebateSummary(BaseModel):
+    id: int
+    topic: str
+    rounds: int
+    created_at: str
+
+
+class DebateDetailResponse(BaseModel):
+    debate_id: int
+    topic: str
+    rounds: int
+    debate_history: list[dict]
+    research_analysis: str
+    critique: str
+    judge_result: dict
+    created_at: str
