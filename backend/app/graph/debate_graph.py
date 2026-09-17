@@ -80,7 +80,7 @@ def pro_node(state: DebateState) -> dict:
         state["topic"]
     )
 
-    history = apend_history(
+    history = append_history(
         state=state,
         speaker="PRO",
         statement_type="Opening Argument",
@@ -166,28 +166,27 @@ def research_node(state: DebateState) -> dict:
 
     debate_history = format_debate_history(state)
 
-    analysis = agent.analyze_arguments(
+    analysis = agent.analyze_debate(
         topic=state["topic"],
         debate_history=debate_history,
-        research_analysis=state["research_analysis"],
+        
     )
 
     return {
-        "critique": analysis
+        "research_analysis": analysis
     }
 
 
 def critic_node(state: DebateState) -> dict:
     agent = CriticAgent()
 
-    critique = agent.critique_arguments(
+    debate_history = format_debate_history(state)
+
+    critique = agent.critique_debate(
         topic=state["topic"],
-        pro_argument=state["pro_argument"],
-        con_argument=state["con_argument"],
-        pro_rebuttal=state["pro_rebuttal"],
-        con_rebuttal=state["con_rebuttal"],
+        debate_history=debate_history,
         research_analysis=state["research_analysis"],
-        debate_history=state["debate_history"],
+        
     )
 
     return {
@@ -203,7 +202,6 @@ def judge_node(state: DebateState) -> dict:
     result = agent.judge_debate(
         topic=state["topic"],
         debate_history=debate_history,
-        
         research_analysis=state["research_analysis"],
         critique=state["critique"],
     )
