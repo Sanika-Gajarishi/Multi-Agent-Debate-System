@@ -597,7 +597,7 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-### 3. Configure Gemini API Key
+### 3. Configure Anthropic API Key
 
 Create a `.env` file inside the `backend` folder:
 
