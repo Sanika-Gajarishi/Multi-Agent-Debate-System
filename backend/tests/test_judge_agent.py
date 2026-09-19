@@ -75,3 +75,6 @@ def test_judge_agent():
     assert len(result["strongest_con_argument"]) > 0
     assert len(result["reasoning"]) > 0
     assert len(result["final_verdict"]) > 0
+
+
+    
