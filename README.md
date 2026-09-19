@@ -2,7 +2,7 @@
 
 An AI-powered **Multi-Agent Debate System** that simulates a structured debate between multiple specialized AI agents. The agents argue opposing sides, exchange rebuttals, analyze factual claims, critique the debate, and produce a structured final verdict.
 
-The system uses **Google Gemini**, **LangGraph**, **FastAPI**, **SQLAlchemy**, **SQLite**, and **Streamlit**, and supports both **text-based and voice-based interaction**. Users can enter a debate topic by typing or speaking, and listen to the generated debate using AI-powered text-to-speech.
+The system uses **Anthropic**, **LangGraph**, **FastAPI**, **SQLAlchemy**, **SQLite**, and **Streamlit**, and supports both **text-based and voice-based interaction**. Users can enter a debate topic by typing or speaking, and listen to the generated debate using AI-powered text-to-speech.
 
 ---
 
@@ -141,23 +141,6 @@ Structured final verdict
 Debate saved to SQLite
         ↓
 Results displayed in Streamlit
-```
-
-### Round Behavior
-
-Opening arguments occur once. Each selected rebuttal round contains a PRO rebuttal followed by a CON rebuttal.
-
-| Rebuttal Rounds | Total Statements |
-|:---:|:---:|
-| 1 | 4 |
-| 2 | 6 |
-| 3 | 8 |
-| 4 | 12 |
-
-**Formula:**
-
-```text
-Total Statements = 2 + (2 × Rebuttal Rounds)
 ```
 
 ---
@@ -427,7 +410,7 @@ Request:
 }
 ```
 
-Supported rounds: `1`, `2`, `3`, `5`
+Supported rounds: `1`, `2`, `3`, `4`, `5`
 
 ### Get Debate List
 
@@ -569,7 +552,7 @@ The normal text transcript and analysis remain available regardless of the selec
 ### 1. Clone the Repository
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
+git clone <https://github.com/Sanika-Gajarishi/Multi-Agent-Debate-System>
 cd Multi-Agent-Debate-System
 ```
 
@@ -605,7 +588,6 @@ Create a `.env` file inside the `backend` folder:
 ANTHROPIC_API_KEY=your_anthropic_api_key
 ```
 
-> Never commit `.env` to GitHub. The repository's `.gitignore` already excludes it.
 
 ### 4. Frontend Setup
 
