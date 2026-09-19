@@ -751,6 +751,12 @@ This makes it possible to experiment with agent specialization, state management
 
 This project is created for educational, learning, and portfolio purposes.
 
+---
 
+## ⭐ Support
+
+If you find this project interesting, consider giving the repository a ⭐ on GitHub.
+
+---
 
 
